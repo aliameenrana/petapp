@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <ui:VisualElement class="feed-page" picking-mode="Ignore">
+        <ui:VisualElement name="video" class="feed-video" picking-mode="Ignore" />
+        <ui:VisualElement name="state" class="feed-state" picking-mode="Ignore">
+            <ui:Label name="state-text" text="Loading…" class="overlay-text" picking-mode="Ignore" />
+            <ui:Button name="retry" text="Retry" class="secondary-button hidden" />
+        </ui:VisualElement>
+        <ui:VisualElement class="feed-info" picking-mode="Ignore">
+            <ui:Label name="title" text="" class="feed-title" picking-mode="Ignore" />
+            <ui:Button name="play" text="Play now" class="primary-button" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

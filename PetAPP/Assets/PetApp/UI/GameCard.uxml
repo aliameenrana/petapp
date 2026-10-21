@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <ui:VisualElement class="game-card">
+        <ui:Label name="card-title" text="Game" class="game-card__title" />
+        <ui:VisualElement class="game-card__body">
+            <ui:VisualElement class="game-card__text">
+                <ui:Label name="card-status" text="" class="game-card__status" />
+                <ui:ProgressBar name="card-progress" low-value="0" high-value="1" class="progress hidden" />
+            </ui:VisualElement>
+            <ui:Button name="card-delete" text="Delete" class="game-card__delete hidden" />
+            <ui:Button name="card-action" text="Play" class="primary-button" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

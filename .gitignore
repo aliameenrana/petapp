@@ -1,0 +1,37 @@
+# Unity generated
+**/[Ll]ibrary/
+**/[Tt]emp/
+**/[Oo]bj/
+**/[Bb]uild/
+**/[Bb]uilds/
+**/iOSBuild/
+**/[Ll]ogs/
+**/[Uu]ser[Ss]ettings/
+**/MemoryCaptures/
+**/*.csproj
+**/*.sln
+**/*.slnx
+**/*.pidb
+**/*.userprefs
+**/.vs/
+**/.idea/
+**/.vscode/
+**/*.apk
+**/*.aab
+**/*.unitypackage
+**/mono_crash.*.json
+**/sysinfo.txt
+**/crashlytics-build.properties
+
+# Node / Cloudflare
+**/node_modules/
+**/.wrangler/
+**/.dev.vars*
+**/.env
+**/.env.*
+
+# OS
+.DS_Store
+
+# Raw third-party downloads; the used assets are already imported into the projects
+asset-downloads/

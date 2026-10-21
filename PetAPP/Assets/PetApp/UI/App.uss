@@ -1,0 +1,143 @@
+.app {
+    flex-grow: 1;
+    -unity-font: url("../Art/Fonts/LilitaOne-Regular.ttf");
+    -unity-font-definition: url("../Art/Fonts/LilitaOne-Regular.ttf");
+    color: rgb(255, 255, 255);
+}
+.hidden { display: none; }
+
+.outlined { -unity-text-outline-width: 2px; -unity-text-outline-color: rgb(95, 45, 10); text-shadow: 0 4px 0 rgba(60, 25, 5, 0.6); }
+
+.screens { position: absolute; left: 0; right: 0; top: 0; bottom: 0; }
+.screen {
+    position: absolute; left: 0; right: 0; top: 0; bottom: 0; padding-top: 170px; padding-bottom: 210px;
+    transition-property: opacity, translate; transition-duration: 0.22s, 0.4s; transition-timing-function: ease-out, ease-out-back;
+}
+.screen--enter { opacity: 0; translate: 0 90px; }
+.screen--opaque { background-color: rgb(255, 236, 205); padding-left: 36px; padding-right: 36px; }
+.screen--black { background-color: rgb(0, 0, 0); padding-top: 0; padding-bottom: 0; }
+
+.title { font-size: 72px; color: rgb(255, 255, 255); margin-bottom: 28px; -unity-text-outline-width: 3px; -unity-text-outline-color: rgb(150, 70, 15); text-shadow: 0 6px 0 rgb(150, 70, 15); }
+.hint {
+    position: absolute; bottom: 250px; left: 0; right: 0; -unity-text-align: middle-center; font-size: 46px; color: rgb(255, 255, 255);
+    -unity-text-outline-width: 3px; -unity-text-outline-color: rgb(95, 45, 10); text-shadow: 0 5px 0 rgba(60, 25, 5, 0.6);
+}
+.fx-layer { position: absolute; left: 0; right: 0; top: 0; bottom: 0; }
+
+.top-bar { position: absolute; top: 70px; right: 30px; flex-direction: row; }
+.coin-pill {
+    flex-direction: row; align-items: center; height: 92px; min-width: 260px; padding-left: 8px; padding-right: 36px;
+    background-image: url("../Art/UI/pill.png"); -unity-slice-left: 22; -unity-slice-right: 22; -unity-slice-top: 20; -unity-slice-bottom: 20; -unity-slice-scale: 2;
+    transition-property: scale; transition-duration: 0.3s; transition-timing-function: ease-out-back;
+}
+.coin-pill--bump { scale: 1.35 1.35; transition-duration: 0.08s; }
+.coin-icon { width: 96px; height: 96px; margin-left: -20px; margin-right: 10px; background-image: url("../Art/UI/icon_coin.png"); }
+.coin-label { font-size: 52px; color: rgb(255, 240, 160); -unity-text-outline-width: 2px; -unity-text-outline-color: rgb(95, 45, 10); }
+
+/* Drawn in the kit's colours: every kit panel has a header band that the icons would straddle. */
+.tab-bar {
+    position: absolute; left: 24px; right: 24px; bottom: 40px; height: 180px; flex-direction: row; align-items: stretch;
+    background-color: rgb(102, 66, 39); border-radius: 40px;
+    border-width: 5px; border-color: rgb(255, 170, 150); border-top-color: rgb(255, 196, 120);
+}
+.tab { flex-grow: 1; flex-basis: 0; align-items: center; justify-content: center; overflow: visible; background-color: rgba(0, 0, 0, 0); border-width: 0; margin: 0; padding: 0; }
+.tab__icon {
+    width: 92px; height: 92px;
+    transition-property: scale; transition-duration: 0.35s; transition-timing-function: ease-out-back;
+}
+.tab__icon--home { background-image: url("../Art/UI/icon_home.png"); }
+.tab__icon--games { background-image: url("../Art/UI/icon_games.png"); }
+.tab__icon--feed { background-image: url("../Art/UI/icon_feed.png"); }
+.tab__label { font-size: 28px; color: rgb(255, 230, 200); margin: 6px 0 0 0; padding: 0; -unity-text-align: middle-center; -unity-text-outline-width: 2px; -unity-text-outline-color: rgb(70, 35, 10); }
+.tab.selected .tab__icon { scale: 1.15 1.15; }
+.tab.selected .tab__label { color: rgb(255, 255, 255); }
+.tab:active .tab__icon { scale: 0.9 0.9; }
+
+.primary-button {
+    height: 120px; min-width: 300px; padding-left: 48px; padding-right: 48px; border-width: 0; background-color: rgba(0, 0, 0, 0);
+    background-image: url("../Art/UI/button_wide.png"); -unity-slice-left: 40; -unity-slice-right: 40; -unity-slice-top: 40; -unity-slice-bottom: 40; -unity-slice-scale: 1.4;
+    font-size: 46px; color: rgb(255, 255, 255); -unity-text-outline-width: 2px; -unity-text-outline-color: rgb(140, 60, 10); text-shadow: 0 4px 0 rgba(120, 50, 10, 0.7);
+    transition-property: scale; transition-duration: 0.18s; transition-timing-function: ease-out-back;
+}
+.primary-button:hover { scale: 1.04 1.04; }
+.primary-button:active { scale: 0.9 0.9; transition-duration: 0.06s; }
+.primary-button:disabled { opacity: 0.5; }
+.secondary-button {
+    width: 120px; height: 120px; margin-top: 28px; border-width: 0; background-color: rgba(0, 0, 0, 0); background-image: url("../Art/UI/icon_retry.png");
+    font-size: 1px; color: rgba(0, 0, 0, 0);
+    transition-property: scale, rotate; transition-duration: 0.25s; transition-timing-function: ease-out-back;
+}
+.secondary-button:active { scale: 0.85 0.85; rotate: -30deg; }
+.text-button {
+    margin-top: 20px; border-width: 0; background-color: rgba(0, 0, 0, 0);
+    font-size: 36px; color: rgb(255, 220, 190); -unity-text-align: middle-center;
+}
+.text-button:active { opacity: 0.6; }
+
+.progress { margin-top: 24px; min-width: 520px; height: 56px; }
+.progress .unity-progress-bar__background {
+    background-color: rgba(0, 0, 0, 0); border-width: 0; height: 56px;
+    background-image: url("../Art/UI/bar_track.png"); -unity-slice-left: 26; -unity-slice-right: 26; -unity-slice-top: 26; -unity-slice-bottom: 26;
+}
+.progress .unity-progress-bar__progress {
+    background-color: rgba(0, 0, 0, 0); margin: 8px;
+    background-image: url("../Art/UI/bar_fill.png"); -unity-slice-left: 20; -unity-slice-right: 20; -unity-slice-top: 20; -unity-slice-bottom: 20;
+}
+.progress .unity-progress-bar__title { font-size: 28px; color: rgb(255, 255, 255); }
+
+.games-list { flex-grow: 1; }
+/* The kit panels' header band is the top 64 source pixels; slicing exactly there keeps it unstretched and titles sit inside it. */
+.game-card {
+    padding: 0 36px 40px 40px; margin-bottom: 30px;
+    background-image: url("../Art/UI/panel_card.png"); -unity-slice-left: 24; -unity-slice-right: 24; -unity-slice-top: 64; -unity-slice-bottom: 24; -unity-slice-scale: 1.6;
+}
+.game-card__title { height: 102px; -unity-text-align: middle-left; font-size: 54px; color: rgb(255, 255, 255); -unity-text-outline-width: 2px; -unity-text-outline-color: rgb(140, 60, 10); }
+.game-card__body { flex-direction: row; align-items: center; margin-top: 28px; }
+.game-card__text { flex-grow: 1; margin-right: 20px; }
+.game-card__status { font-size: 32px; color: rgb(255, 215, 160); margin-top: 8px; white-space: normal; }
+.game-card__delete {
+    height: 120px; margin-right: 16px; padding: 0 20px; border-width: 0; background-color: rgba(0, 0, 0, 0);
+    font-size: 34px; color: rgb(255, 205, 180); -unity-text-align: middle-center;
+}
+.game-card__delete:active { opacity: 0.6; }
+
+.feed-pager { position: absolute; left: 0; right: 0; top: 0; bottom: 0; overflow: hidden; }
+.feed-column { position: absolute; left: 0; right: 0; top: 0; }
+.feed-column--animating { transition-property: translate; transition-duration: 0.32s; transition-timing-function: ease-out-back; }
+.feed-page { position: absolute; left: 0; right: 0; }
+.feed-video { position: absolute; left: 0; right: 0; top: 0; bottom: 0; background-color: rgb(0, 0, 0); }
+.feed-state { position: absolute; left: 0; right: 0; top: 0; bottom: 0; align-items: center; justify-content: center; }
+.feed-info { position: absolute; left: 36px; right: 36px; bottom: 250px; flex-direction: row; align-items: center; justify-content: space-between; }
+.feed-title { font-size: 50px; color: rgb(255, 255, 255); flex-shrink: 1; white-space: normal; -unity-text-outline-width: 2px; -unity-text-outline-color: rgb(0, 0, 0); text-shadow: 0 4px 6px rgba(0, 0, 0, 0.8); }
+
+.overlay { position: absolute; left: 0; right: 0; top: 0; bottom: 0; background-color: rgba(25, 12, 5, 0.75); align-items: center; justify-content: center; transition-property: opacity; transition-duration: 0.2s; }
+.dialog {
+    width: 86%; padding: 0 50px 60px 50px; align-items: center;
+    background-image: url("../Art/UI/panel_dialog.png"); -unity-slice-left: 24; -unity-slice-right: 24; -unity-slice-top: 64; -unity-slice-bottom: 24; -unity-slice-scale: 1.6;
+    transition-property: scale, opacity; transition-duration: 0.45s, 0.2s; transition-timing-function: ease-out-back, ease-out;
+}
+.overlay--enter { opacity: 0; }
+.overlay--enter .dialog { scale: 0.4 0.4; opacity: 0; }
+.overlay-title { height: 102px; -unity-text-align: middle-center; font-size: 66px; color: rgb(255, 255, 255); margin-bottom: 36px; -unity-text-outline-width: 3px; -unity-text-outline-color: rgb(150, 70, 15); text-shadow: 0 6px 0 rgb(150, 70, 15); }
+.overlay-text { font-size: 40px; color: rgb(255, 235, 210); -unity-text-align: middle-center; white-space: normal; margin: 8px 20px; }
+.result-coins { font-size: 110px; color: rgb(255, 215, 60); margin: 24px; -unity-text-outline-width: 4px; -unity-text-outline-color: rgb(140, 70, 0); text-shadow: 0 7px 0 rgb(140, 70, 0); }
+
+.hud { position: absolute; top: 70px; left: 36px; right: 320px; flex-direction: row; align-items: center; }
+.hud-score { font-size: 96px; color: rgb(255, 255, 255); -unity-text-outline-width: 3px; -unity-text-outline-color: rgb(95, 45, 10); text-shadow: 0 6px 0 rgba(60, 25, 5, 0.6); }
+.hud-timer { font-size: 54px; color: rgb(255, 245, 200); margin-left: 34px; flex-grow: 1; -unity-text-outline-width: 2px; -unity-text-outline-color: rgb(95, 45, 10); }
+.hud-quit { width: 96px; height: 96px; border-width: 0; background-color: rgba(0, 0, 0, 0); background-image: url("../Art/UI/icon_close.png"); color: rgba(0, 0, 0, 0); font-size: 1px; transition-property: scale; transition-duration: 0.15s; }
+.hud-quit:active { scale: 0.85 0.85; }
+.hud-banner {
+    position: absolute; top: 38%; left: 0; right: 0; -unity-text-align: middle-center; font-size: 96px; color: rgb(255, 255, 255);
+    -unity-text-outline-width: 4px; -unity-text-outline-color: rgb(150, 70, 15); text-shadow: 0 8px 0 rgb(150, 70, 15);
+}
+
+.focus-button {
+    position: absolute; right: 40px; bottom: 236px; width: 112px; height: 112px; margin: 0; padding: 0;
+    align-items: center; justify-content: center; border-radius: 56px;
+    background-color: rgb(102, 66, 39); border-width: 5px; border-color: rgb(255, 170, 150); border-top-color: rgb(255, 196, 120);
+    transition-property: scale; transition-duration: 0.18s; transition-timing-function: ease-out-back;
+}
+.focus-button:active { scale: 0.85 0.85; transition-duration: 0.06s; }
+.focus-button__ring { width: 56px; height: 56px; border-radius: 28px; border-width: 6px; border-color: rgb(255, 240, 200); align-items: center; justify-content: center; }
+.focus-button__dot { width: 16px; height: 16px; border-radius: 8px; background-color: rgb(255, 240, 200); }

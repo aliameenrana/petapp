@@ -1,0 +1,7 @@
+{
+  "name": "petapp-minigame-tools",
+  "private": true,
+  "devDependencies": {
+    "typescript": "5.6.3"
+  }
+}

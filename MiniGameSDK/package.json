@@ -1,0 +1,7 @@
+{
+  "name": "com.petapp.minigame-sdk",
+  "displayName": "PetApp Mini-game SDK",
+  "version": "1.0.0",
+  "unity": "6000.0",
+  "description": "The contract between the PetApp host and mini-game packages: built-in components prefabs may use, and the TypeScript API games are written against."
+}

@@ -1,0 +1,8 @@
+{
+    "feed": [
+        { "title": "Corestorm Mecha Arena", "video": "https://assets.elseland.elser.ai/games/corestorm-mecha-arena/pv-6s.mp4", "gameId": "catch-the-prize" },
+        { "title": "Gothic Blast", "video": "https://assets.elseland.elser.ai/games/gothic-blast/pv-video.mp4", "gameId": "catch-the-prize" },
+        { "title": "Emoji Cube Match 3D", "video": "https://assets.elseland.elser.ai/games/emoji-cube-match-3d/emoji-cube-match-3d-9-16-5s.mp4", "gameId": "catch-the-prize" },
+        { "title": "Broken link (error state)", "video": "https://assets.elseland.elser.ai/games/does-not-exist/missing.mp4", "gameId": "catch-the-prize" }
+    ]
+}

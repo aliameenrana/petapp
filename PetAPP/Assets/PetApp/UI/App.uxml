@@ -1,0 +1,84 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <Style src="App.uss" />
+    <ui:VisualElement name="app" class="app" picking-mode="Ignore">
+        <ui:VisualElement name="screens" class="screens" picking-mode="Ignore">
+
+            <ui:VisualElement name="screen-home" class="screen" picking-mode="Ignore">
+                <ui:Label text="Tap your pet!" class="hint" picking-mode="Ignore" />
+                <ui:VisualElement name="home-fx" class="fx-layer" picking-mode="Ignore" />
+                <ui:Button name="home-focus" text="" class="focus-button">
+                    <ui:VisualElement class="focus-button__ring" picking-mode="Ignore">
+                        <ui:VisualElement class="focus-button__dot" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                </ui:Button>
+            </ui:VisualElement>
+
+            <ui:VisualElement name="screen-games" class="screen screen--opaque hidden">
+                <ui:Label text="Mini-games" class="title" />
+                <ui:ScrollView name="games-list" class="games-list" />
+            </ui:VisualElement>
+
+            <ui:VisualElement name="screen-feed" class="screen screen--black hidden">
+                <ui:VisualElement name="feed-pager" class="feed-pager">
+                    <ui:VisualElement name="feed-column" class="feed-column" picking-mode="Ignore" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <ui:VisualElement name="screen-game" class="screen hidden" picking-mode="Ignore">
+                <ui:VisualElement class="hud" picking-mode="Ignore">
+                    <ui:Label name="hud-score" text="0" class="hud-score" picking-mode="Ignore" />
+                    <ui:Label name="hud-timer" text="" class="hud-timer" picking-mode="Ignore" />
+                </ui:VisualElement>
+                <ui:Button name="hud-quit" text="" class="hud-quit" style="position: absolute; top: 185px; right: 36px;" />
+                <ui:Label name="hud-banner" text="" class="hud-banner hidden" picking-mode="Ignore" />
+                <ui:VisualElement name="game-loading" class="overlay hidden">
+                    <ui:VisualElement class="dialog">
+                        <ui:Label text="Get ready" class="overlay-title" />
+                        <ui:Label name="game-loading-text" text="Downloading…" class="overlay-text" />
+                        <ui:ProgressBar name="game-progress" low-value="0" high-value="1" class="progress" />
+                        <ui:Button name="game-loading-cancel" text="Cancel" class="primary-button" style="margin-top: 36px;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="game-result" class="overlay hidden">
+                    <ui:VisualElement class="dialog">
+                        <ui:Label name="result-title" text="Time's up" class="overlay-title" />
+                        <ui:Label name="result-score" text="" class="overlay-text" />
+                        <ui:Label name="result-coins" text="" class="result-coins" />
+                        <ui:Button name="result-continue" text="Continue" class="primary-button" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="top-bar" class="top-bar" picking-mode="Ignore">
+            <ui:VisualElement name="coin-pill" class="coin-pill" picking-mode="Ignore">
+                <ui:VisualElement class="coin-icon" picking-mode="Ignore" />
+                <ui:Label name="coin-label" text="0" class="coin-label" picking-mode="Ignore" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="tab-bar" class="tab-bar">
+            <ui:Button name="tab-home" text="" class="tab">
+                <ui:VisualElement class="tab__icon tab__icon--home" picking-mode="Ignore" />
+                <ui:Label text="Home" class="tab__label" picking-mode="Ignore" />
+            </ui:Button>
+            <ui:Button name="tab-games" text="" class="tab">
+                <ui:VisualElement class="tab__icon tab__icon--games" picking-mode="Ignore" />
+                <ui:Label text="Games" class="tab__label" picking-mode="Ignore" />
+            </ui:Button>
+            <ui:Button name="tab-feed" text="" class="tab">
+                <ui:VisualElement class="tab__icon tab__icon--feed" picking-mode="Ignore" />
+                <ui:Label text="Feed" class="tab__label" picking-mode="Ignore" />
+            </ui:Button>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="game-update" class="overlay hidden">
+            <ui:VisualElement class="dialog">
+                <ui:Label text="Update available" class="overlay-title" />
+                <ui:Label name="update-text" text="" class="overlay-text" />
+                <ui:Button name="update-download" text="Download" class="primary-button" style="margin-top: 36px;" />
+                <ui:Button name="update-later" text="Later" class="text-button" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

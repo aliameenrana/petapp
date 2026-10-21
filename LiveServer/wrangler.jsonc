@@ -1,0 +1,23 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "petapp-live",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-01",
+
+  "observability": {
+    "enabled": true
+  },
+
+  // Reached ONLY via aliameen.com/petapp/* (the website's Pages Function
+  // functions/petapp/[[path]].ts and its PETAPP_LIVE_API service binding).
+  "workers_dev": false,
+
+  // Mini-game packages (games/<sha256>.zip) plus the catalog state:
+  // catalog/games.json (written by publishes) and catalog/feed.json (editorial).
+  "r2_buckets": [
+    { "binding": "PACKAGES", "bucket_name": "petapp-live" }
+  ]
+
+  // PUBLISH_TOKEN is a secret, not a var. Set it with:
+  //   npx wrangler secret put PUBLISH_TOKEN
+}
