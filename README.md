@@ -1,6 +1,6 @@
 # PetApp
 
-A 3D pet game prototype for iOS, built entirely in Unity: a tab bar (Home, Mini-games, Feed), one coin balance shared by every screen and saved across restarts, and mini-games that are not in the app install. Full design: [PetApp-Architecture.pdf](PetApp-Architecture.pdf). Demo video: [PetApp-Demo.mp4](PetApp-Demo.mp4).
+A 3D pet game prototype for iOS, built entirely in Unity: a tab bar (Home, Mini-games, Feed), one coin balance shared by every screen and saved across restarts, and mini-games that are not in the app install. Full design: [PetApp-Architecture.pdf](PetApp-Architecture.pdf). Demo video: [PetApp-Demo.mp4](PetApp-Demo.mp4). Feed on iPhone: [PetApp-Feed.mp4](PetApp-Feed.mp4).
 
 ## Project structure and key packages
 
