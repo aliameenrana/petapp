@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using PetApp.App;
 using PetApp.MiniGames;
@@ -46,6 +47,7 @@ namespace PetApp.Feed
         Vector2 pointerStart;
         bool dragging;
         string cacheDir;
+        string feedSignature;
 
         void Start()
         {
@@ -81,10 +83,17 @@ namespace PetApp.Feed
 
         void Build(Catalog catalog)
         {
-            if (pages.Count == catalog.feed.Length) return;
+            var signature = string.Join("\n", catalog.feed.Select(f => $"{f.title}|{f.video}|{f.gameId}"));
+            if (signature == feedSignature) return;
+            feedSignature = signature;
+
+            foreach (var old in pages) Cancel(old);
+            foreach (var player in pool) player.Stop();
             column.Clear();
             pages.Clear();
             for (var i = 0; i < PoolSize; i++) owner[i] = -1;
+            // The placeholder catalog before the first fetch is empty; pruning against it would wipe every clip.
+            if (catalog.feed.Length > 0) PruneCache(catalog.feed);
 
             foreach (var item in catalog.feed)
             {
@@ -158,7 +167,7 @@ namespace PetApp.Feed
         // Downloading the neighbours also makes the preload real: their bytes are on disk before the swipe.
         IEnumerator Load(Page page, int pageIndex, int slot, int attempt)
         {
-            var path = Path.Combine(cacheDir, PackageCache.Sha256(Encoding.UTF8.GetBytes(page.item.video)).Substring(0, 24) + ".mp4");
+            var path = CachePath(page.item.video);
             if (!File.Exists(path))
             {
                 var partial = $"{path}.{attempt}.part";
@@ -200,6 +209,21 @@ namespace PetApp.Feed
             var player = pool[slot];
             player.url = path;
             player.Prepare();
+        }
+
+        string CachePath(string url) =>
+            Path.Combine(cacheDir, PackageCache.Sha256(Encoding.UTF8.GetBytes(url)).Substring(0, 24) + ".mp4");
+
+        // Keeps only clips the current feed still lists, plus no half-finished downloads.
+        void PruneCache(FeedItem[] feed)
+        {
+            var keep = new HashSet<string>(feed.Select(f => CachePath(f.video)));
+            foreach (var file in Directory.GetFiles(cacheDir))
+            {
+                if (keep.Contains(file)) continue;
+                try { File.Delete(file); }
+                catch (IOException e) { Debug.LogWarning($"Could not remove cached clip {file}: {e.Message}"); }
+            }
         }
 
         static void Cancel(Page page)

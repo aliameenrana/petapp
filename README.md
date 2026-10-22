@@ -26,11 +26,20 @@ A 3D pet game prototype for iOS, built entirely in Unity: a tab bar (Home, Mini-
 
 ## Adding a mini-game, and user-created games
 
-Add `Assets/Games/<id>/` to a creator project with `game.json` (id, title, SDK version), `game.ts`, and an `Assets/` folder whose file names become the keys the code loads. Run **Mini-game > Publish to live**. The server assigns the version and the game appears in every app within seconds, with no app release. For UGC, creators install the same SDK package in their own Unity project; the sandbox already treats game code as untrusted, and packages are verified by hash on upload and download. What's left is per-creator accounts instead of one publish token, moderation before games go live, and the reporting, blocking and age-rating features Apple requires under guideline 4.7.
+Add `Assets/Games/<id>/` to a creator project with `game.json` (id, title, SDK version), `game.ts`, and an `Assets/` folder whose file names become the keys the code loads. Run **Mini-game > Publish to live**. The server assigns the version and the game appears in every app within seconds, with no app release. For UGC, creators install the same SDK package in their own Unity project. The sandbox already treats game code as untrusted, and packages are verified by hash on upload and download. Opening it to players adds per-creator accounts with their own publish tokens, a moderation step before games go live, and the reporting, blocking and age-rating features Apple asks for under guideline 4.7.
 
 ## How the feed loads and preloads videos
 
-The feed list comes from the same catalog, so it can change without an app release. Three VideoPlayers are pooled: the visible page and its neighbours. Each clip is downloaded to a local cache first and played from disk, because the source MP4s put their index at the end of the file, which iOS can't stream. Downloading the neighbours makes the preload real: the next clip is usually ready before the swipe. Pages show download progress, a "taking too long" state after 15 s with no progress, and a Retry button on failure (one feed entry is a deliberately broken link). Clips fill the screen when their shape is close to the screen's and letterbox otherwise. Playback pauses off the Feed tab and during games, and **Play now** opens the mini-game, downloading it first if needed.
+The feed list comes from the same catalog as the games, so videos can be added, swapped or removed without an app release, and a running app picks the change up on its next check. Videos stream from their remote URLs into a download-then-play pipeline:
+
+- **Pooled players.** Three VideoPlayers cover the visible page and its two neighbours; each page index always maps to the same player, so a swipe never interrupts the clip on screen.
+- **Download, then play from disk.** Each clip is downloaded to a local cache, named by a hash of its URL, and played from the file. This plays every MP4 reliably on iOS, including files whose index sits at the end, which Apple's player can't stream.
+- **Preloading.** The neighbours download while the current clip plays, so the next one is usually ready before the swipe. Clips seen before play instantly from the cache.
+- **Cache upkeep.** Whenever the feed changes, clips it no longer lists and unfinished downloads are deleted.
+- **Loading and failure.** Pages show download progress, a "taking too long" state after 15 s without progress, and Retry on failure. One feed entry is a deliberately broken link to show this state.
+- **Aspect ratios.** A clip fills the screen when its shape is close to the screen's and letterboxes otherwise, so nothing important is cropped.
+
+Playback pauses off the Feed tab and during games. **Play now** opens the mini-game, downloading it first if needed.
 
 ## Running it
 
